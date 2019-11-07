@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">WhereIsMyCheese</string>
+    <string name="note_hint">Leave a cheesy note..</string>
+    <string name="save_cheese">Save cheese</string>
+
+    <string name="launch_activity">Launch activity</string>
+    <string name="location_unknown">Location unknown</string>
+    <string name="location_updates_label">Location Updates</string>
+
+    <string name="request_location_updates">Request location updates</string>
+    <string name="remove_location_updates">Remove location updates</string>
+
+    <string name="location_updated">Location Updated: %1$s</string>
+
+</resources>

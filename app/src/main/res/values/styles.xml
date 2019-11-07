@@ -1,0 +1,35 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="CheezButton" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:paddingLeft">@dimen/padding_medium</item>
+        <item name="android:paddingRight">@dimen/padding_medium</item>
+        <item name="android:layout_marginBottom">@dimen/margin_medium</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:background">@drawable/button_rounded</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="CloseButton" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:layout_width">@dimen/close_button_small</item>
+        <item name="android:layout_height">@dimen/close_button_small</item>
+        <item name="android:background">@android:drawable/ic_menu_close_clear_cancel</item>
+    </style>
+
+    <style name="EditTextPopup" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginBottom">@dimen/margin_medium</item>
+        <item name="android:layout_width">@dimen/edit_text_popup_width</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+</resources>

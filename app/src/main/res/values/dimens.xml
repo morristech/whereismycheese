@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="corner_radius_small">8dip</dimen>
+    <dimen name="corner_radius_large">30dp</dimen>
+    <dimen name="button_stroke_width_small">1dip</dimen>
+    <dimen name="padding_medium">30dp</dimen>
+    <dimen name="padding_small">10dp</dimen>
+    <dimen name="margin_medium">30dp</dimen>
+    <dimen name="close_button_small">30dp</dimen>
+    <dimen name="edit_text_popup_width">250dp</dimen>
+</resources>

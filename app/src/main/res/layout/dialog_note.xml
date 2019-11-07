@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+    Feel free to create your own, better looking cheezy note form. You are also welcome to just use the AlertDialog if time is of the essence.
+-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/exitDialogButton"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        style="@style/CloseButton" />
+
+    <EditText
+        android:id="@+id/noteText"
+        android:layout_below="@id/exitDialogButton"
+        android:hint="@string/note_hint"
+        style="@style/EditTextPopup" />
+
+    <Button
+        android:id="@+id/saveCheeseButton"
+        android:layout_below="@id/noteText"
+        android:text="@string/save_cheese"
+        style="@style/CheezButton" />
+
+</RelativeLayout>
