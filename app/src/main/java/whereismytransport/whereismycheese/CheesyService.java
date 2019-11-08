@@ -29,6 +29,7 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +44,7 @@ public class CheesyService extends Service {
 
     private static final String TAG = CheesyService.class.getSimpleName();
 
+    private static ArrayList<MarkerOptions> markers = new ArrayList<MarkerOptions>();
     private static List<CheesyTreasure> treasures = new ArrayList<CheesyTreasure>();
 
     /**
@@ -111,7 +113,6 @@ public class CheesyService extends Service {
     @Override
     public void onCreate() {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-
         locationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
@@ -230,7 +231,9 @@ public class CheesyService extends Service {
         }
     }
 
-    public void saveCheesyTreasure(@NonNull CheesyTreasure treasure) {
+    public void saveCheesyTreasure(@NonNull MarkerOptions marker) {
+        markers.add(marker);
+        CheesyTreasure treasure = new CheesyTreasure(marker.getPosition(), marker.getTitle());
         if (treasures != null) {
             treasures.add(treasure);
         }
@@ -248,6 +251,7 @@ public class CheesyService extends Service {
         PendingIntent servicePendingIntent = PendingIntent.getService(this, 0, serviceIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         Intent activityIntent = new Intent(this, MainActivity.class);
         activityIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        activityIntent.putParcelableArrayListExtra(Constants.INTENT_BUNDLE_EXTRA_MARKERS, markers);
         // The PendingIntent to launch activity.
         PendingIntent activityPendingIntent = PendingIntent.getActivity(this, 0, activityIntent, 0);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)

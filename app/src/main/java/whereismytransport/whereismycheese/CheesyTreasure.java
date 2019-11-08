@@ -1,5 +1,8 @@
 package whereismytransport.whereismycheese;
 
+import android.support.annotation.NonNull;
+
+import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 
 /**
@@ -35,4 +38,9 @@ public class CheesyTreasure {
     public boolean equals(CheesyTreasure other) {
         return this.note.equals(other.note);
     }
+
+    public static CheesyTreasure getTreasureFromMarker(@NonNull Marker marker) {
+        return new CheesyTreasure(marker.getPosition(), marker.getTitle());
+    }
+    
 }

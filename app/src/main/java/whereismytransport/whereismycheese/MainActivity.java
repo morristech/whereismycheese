@@ -78,8 +78,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onNewIntent(Intent intent) {
+        if (intent.getExtras() != null && intent.hasExtra(Constants.INTENT_BUNDLE_EXTRA_MARKERS)) {
+            ArrayList<MarkerOptions> markerOptions = intent.getParcelableArrayListExtra(Constants.INTENT_BUNDLE_EXTRA_MARKERS);
+            if (markerOptions != null) {
+                markers.clear();
+                map.clear();
+                for (MarkerOptions marker : markerOptions) {
+                    markers.add(map.addMarker(marker));
+                }
+            }
+            intent.removeExtra(Constants.INTENT_BUNDLE_EXTRA_MARKERS);
+        }
         super.onNewIntent(intent);
-
     }
 
     // A reference to the service used to get location updates.
@@ -113,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
         Mapbox.getInstance(this, "sk.eyJ1IjoibW9ycmlzdGVjaCIsImEiOiJjazJtN2ZmMDkwZG84M2NsbmptaDlmZGJtIn0.jabdYGi30py3jTb26Dd9vg");
         mapView = (MapView) findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
-
         // One does not simply just cheez, you require some permissions.
         int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
         if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
@@ -176,11 +185,10 @@ public class MainActivity extends AppCompatActivity {
         marker.setIcon(icon);
         marker.setPosition(point);
         marker.setTitle(content);
+        //map.getMarkers();
         markers.add(map.addMarker(marker));
-        CheesyTreasure treasure = new CheesyTreasure(point, content);
-        // Saving treasure to service
         if (bound && cheesyService != null) {
-            cheesyService.saveCheesyTreasure(treasure);
+            cheesyService.saveCheesyTreasure(marker);
         }
     }
 
@@ -191,15 +199,11 @@ public class MainActivity extends AppCompatActivity {
         } else {
             vectorDrawable = getResources().getDrawable(drawableId);
         }
-
         Drawable wrapDrawable = DrawableCompat.wrap(vectorDrawable);
-
         int h = vectorDrawable.getIntrinsicHeight();
         int w = vectorDrawable.getIntrinsicWidth();
-
         h = h > 0 ? h : 96;
         w = w > 0 ? w : 96;
-
         wrapDrawable.setBounds(0, 0, w, h);
         Bitmap bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bm);
